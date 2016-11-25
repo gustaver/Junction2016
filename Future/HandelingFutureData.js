@@ -18,6 +18,7 @@ module.exports.getLowestCost = function(data){
   }
   return lowest;
 }
+// senaste dagen: Högsta energiförbrukning, lägsta
 
 module.exports.getTimeByCost = function(cost,data){
   for(var i =0; i<data.length; i++){
