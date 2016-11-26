@@ -74,7 +74,7 @@ $(function() {
             return hex.length === 1 ? '0' + hex : hex;
         }).join('');
 
-
+        
         var average = 0;
 
         for (var usage of usageArray) {
