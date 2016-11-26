@@ -21,7 +21,6 @@ module.exports.getNotifications = function() {
         futureDataArray[i].cost = ( futureDataArray[i].value * futureDataArray[i].usage );
         futureDataArray[i].hour = futureDataArray[i].date.format("HH:mm:ss");
       }
-      //console.log(futureDataArray);
 
       mainData.data = futureDataArray;
 
@@ -169,7 +168,17 @@ module.exports.getNotifications = function() {
     var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
     for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
-        var difference1 = highest1.cost - (highest1.usage * current.cost);
+        var difference1 = parseInt(highest1.cost - (highest1.usage * current.cost));
+        var difference2 = parseInt(highest2.cost - (highest2.usage * current.cost));
+        var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
+        for (var j = 0; j < notificationArray.length; j++) {
+            if (current.hour == notificationArray[j].hour) {
+                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + " here, you will save: " + difference1 + "kr" + "\n" + "If you move your energy usage at " + highest2.hour + " here, you will save: " + difference2 + "kr" + "\n" + "If you move your energy usage at " + highest3.hour + " here, you will save: " + difference3 + "kr"};
+                var type = "suggestion";
+                notificationArray[j].message = suggestionMessage;
+                notificationArray[j].type = type;
+            }
+        }
     }
 
     for (var i = notificationArray.length - 1 ; i >= 0; i--) {
@@ -177,6 +186,7 @@ module.exports.getNotifications = function() {
           notificationArray.splice(i, 1);
         }
       }
+      
       resolve(notificationArray);
     });
   });
