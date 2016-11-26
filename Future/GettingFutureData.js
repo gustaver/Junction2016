@@ -7,20 +7,22 @@ var opts = {}
 //opts.from = '2016-11-26'
 
 // curr = SEK area = S1 and callback is a function that gets the data. (results)
-module.exports = function(curr, area, callback){
-  var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-  var day = currentDate.getDate()
-  var month = currentDate.getMonth() + 1
-  var year = currentDate.getFullYear()
-  var date = year + "-" + month + "-" + day;
-  console.log(date)
-  opts.currency = curr;
-  opts.area = area;
-  opts.from = date;
+module.exports = function(curr, area){
+  return new Promise((resolve, reject) => {
+    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var date = year + "-" + month + "-" + day;
 
-  prices.hourly(opts, function (error, results) {
-    if (error) console.err(error);
+    opts.currency = curr;
+    opts.area = area;
+    opts.from = date;
 
-    callback(results);
+    prices.hourly(opts, function (error, results) {
+      if (error) console.err(error);
+
+      resolve(results);
+    })
   })
 }
