@@ -177,7 +177,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
-                var textMessage = "Low price hour!" + "\n" + "Move your power usage to save:" + "\n" + highest1.hour + ":00" + " -> " + current.hour + " = " + "+" + difference1 + " kr" + "\n" + highest2.hour + ":00" + " -> " + current.hour + " = " + "+" + difference2 + " kr" + "\n" + highest3.hour + ":00" + " -> " + current.hour + " = " + "+" + difference3 + " kr";
+                var textMessage = "Low price hour!" + "\n" + "Move your power usage to save:" + "\n" + highest1.hour + ":00" + " -> " + current.hour + ":00" + " = " + "+" + difference1 + " kr" + "\n" + highest2.hour + ":00" + " -> " + current.hour + ":00" + " = " + "+" + difference2 + " kr" + "\n" + highest3.hour + ":00" + " -> " + current.hour + ":00" + " = " + "+" + difference3 + " kr";
                 notificationArray[j].textmessage = textMessage;
             }
         }
