@@ -1,5 +1,16 @@
 var express = require("express");
 var router = express.Router();
+var notifications = require(__dirname + "/ComparisonData");
+
+notifications.getNotifications().then(result => {
+
+  console.log(result);
+  router.get("/today", function(req, res, next){
+    res.send(result);
+  });
+})
+
+/*
 var jspTest = [
   {
     "id": 1,
@@ -28,15 +39,7 @@ var jspTest = [
       "body": "You can use energy now!"
     }
   }
-];
-
-
-
-router.get("/today", function(req, res, next){
-    res.send(jspTest);
-});
-
-
+];*/
 
 
 module.exports = router;
