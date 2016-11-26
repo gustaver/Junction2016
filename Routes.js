@@ -2,18 +2,20 @@ var express = require("express");
 var router = express.Router();
 var notifications = require(__dirname + "/ComparisonData");
 
-  router.get("/today/:from/:to", function(req, res, next){
-    console.log(req.params.from + " " +  req.params.to);
-    notifications.getNotifications(req.params.from, req.params.to).then(result => {
-    res.send(result);
-  });
-});
 
 router.get("/today", function(req, res, next){
-
+  var start = parseInt(req.param('start')) || 6
+  var end = parseInt(req.param('end')) || 22
+  if(start => 0 && start < 23 && end > 0 && end < 24 && end - start > 0){
+    notifications.getNotifications(parseInt(start), parseInt(end)).then(result => {
+    res.send(result);
+  });
+} else{
   notifications.getNotifications(6, 22).then(result => {
   res.send(result);
 });
+}
+
 });
 
 /*
