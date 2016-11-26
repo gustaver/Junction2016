@@ -10,6 +10,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "bulma": "^0.2.3",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "fs": "0.0.1-security",

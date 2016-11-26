@@ -1,5 +1,55 @@
-h1 {
-  color: #222;
-  font-family: 'helvetica';
-  text-align: center;
+.section {
+  background-color: #F5F5F5;
+}
+.ring {
+  width: 400px;
+  height: 400px;
+  border-radius: 400px;
+  background-color: none;
+  border: 10px solid #00D58C;
+  position: absolute;
+
+}
+.infobox {
+  height: 460px;
+  position: relative;
+  opacity: 0;
+}
+.infobox-inner {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.not-circle {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background-color: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.19), 0 2px 6px rgba(0,0,0,0.23);
+}
+
+.day-alert-text {
+  font-weight: bolder;
+}
+.day-alert {
+  border-radius: 2px;
+  padding: 20px;
+  background: #F5F5F5;
+  width: 160px;
+  position: absolute;
+  left: 600px;
+  right: 0px;
+  top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.notification-title {
+  font-weight: bolder;
 }
