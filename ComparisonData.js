@@ -45,7 +45,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
       mainData.relevantData = relevant;
 
     for (var i = 0; i < relevant.length; i++) {
-        var notification = {"id":i, "values": {"energyusage": relevant[i].usage, "predictedprice": relevant[i].cost, "actualcost":relevant[i].usage * relevant[i].cost}, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
+        var notification = {"id":i, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
         notificationArray.push(notification);
       }
 
