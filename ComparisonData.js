@@ -41,7 +41,7 @@ module.exports = function(){
     //Setting up notifications and appropriate messages.
     var notificationArray = [];
     var badEnergyUsage = {"title":"Bad energy usage!", "body":"You have a high energy consumption at a peak energy price hour."};
-    var goodEnergyUsage = {"title":"Good energy usage", "body":"You have a high energy consumption at a low energ price hour"};
+    var goodEnergyUsage = {"title":"Good energy usage", "body":"You have a high energy consumption at a low energy price hour"};
 
     // Formating the time.
     for(var i = 0; i < dataArray.length; i++){
