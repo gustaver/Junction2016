@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-var comp = require("./ComparisonData")
 var routes = require("./Routes");
 
 app.set('port', (process.env.PORT || 5000));
@@ -19,6 +18,4 @@ app.get('/', function(request, response) {
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-
-  var hej = new comp();
 });

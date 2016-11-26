@@ -13,7 +13,7 @@ module.exports = function(curr, area, callback){
   var month = currentDate.getMonth() + 1
   var year = currentDate.getFullYear()
   var date = year + "-" + month + "-" + day;
-
+  console.log(date)
   opts.currency = curr;
   opts.area = area;
   opts.from = date;
