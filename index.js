@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-
+var textMess = require("./TextMessage")
 var routes = require(__dirname + "/Routes");
 
 app.set('port', (process.env.PORT || 5000));
@@ -16,6 +16,10 @@ app.use('/api',routes);
 
 app.get('/', function(request, response) {
   response.render('index');
+});
+
+app.get('/starter', function(request, response) {
+  response.render('start');
 });
 
 app.listen(app.get('port'), function() {
