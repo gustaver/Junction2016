@@ -8,12 +8,12 @@ var password = '2D8A776731039C101CEE17D64B625DC7';
 
 var postFields = {
   from:    "Komdo",
-  to:      "+46700000000",
+  to:      "+46734239319",
   message: "This is some cool data"
 }
 
 var goText = function(message){
-  postFields.message = message;
+
   var key = new Buffer(username + ':' + password).toString('base64');
   var postData = querystring.stringify(postFields);
 
@@ -49,8 +49,8 @@ var goText = function(message){
 }
 
 var schedule = require('node-schedule')
-//var j = schedule.scheduleJob({hour: 21, minute: 42}, function(){
-
+var j = schedule.scheduleJob({hour: 12, minute: 00}, function(){
+console.log("hi");
 var url = "https://calm-peak-94128.herokuapp.com/api/today";
 request({
     url: url,
@@ -68,10 +68,10 @@ request({
           }
         }
 
-      //var message = "Hi! Here's some smart suggestions for tomorrow: \n" + relevants[0].textMessage + "\n  \n" + relevants[1].textMessage;
-      console.log(relevants);
-
+      var niceStuff = "Hi! Here's some smart suggestions for tomorrow: \n \n" + relevants[0].textmessage + "\n \n" + relevants[1].textmessage + "\n \n" + relevants[2].textmessage;
+      postFields.message = niceStuff;
+      goText();
     }
 })
 
-//});
+});
