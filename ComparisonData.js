@@ -83,18 +83,18 @@ module.exports = function(){
   });
 
   //Split relevant to get top 5 cost data points
-  var top5HourlyCostArray = [];
+  var topHourlyCostArray = [];
   for (var i = relevantHoursCostArray.length - 5; i < relevantHoursCostArray.length; i++) {
-    top5HourlyCostArray.push(relevantHoursCostArray[i]);
+    topHourlyCostArray.push(relevantHoursCostArray[i]);
   }
-  //console.log(top5HourlyCostArray);
+  //console.log(topHourlyCostArray);
 
   //Split relevant to get top 5 usage data points
-  var top5HourlyUsageArray = [];
+  var topHourlyUsageArray = [];
   for (var i = relevantHoursUsageArray.length - 5; i < relevantHoursUsageArray.length; i++) {
-    top5HourlyUsageArray.push(relevantHoursUsageArray[i]);
+    topHourlyUsageArray.push(relevantHoursUsageArray[i]);
   }
-  //console.log(top5HourlyUsageArray);
+  //console.log(topHourlyUsageArray);
 
   //Split relevant to get bottom cost data points
   var bottomHourlyCostArray = [];
@@ -110,23 +110,23 @@ module.exports = function(){
   }
 
   //Checking for intersections between top 5 hourly costs and top 5 hourly usages
-  for (var i = 0; i < top5HourlyUsageArray.length; i++) {
-    var usageHour = top5HourlyUsageArray[i].hour;
-    for (var j = 0; j < top5HourlyCostArray.length; j++) {
-      if (usageHour == top5HourlyCostArray[j].hour) {
+  for (var i = 0; i < topHourlyUsageArray.length; i++) {
+    var usageHour = topHourlyUsageArray[i].hour;
+    for (var j = 0; j < topHourlyCostArray.length; j++) {
+      if (usageHour == topHourlyCostArray[j].hour) {
         //Using energy at times when costs are the highest
-        //console.log(top5HourlyCostArray[j].hour);
+        console.log(topHourlyCostArray[j].hour);
       }
     }
   }
 
   //Checking for intersections between bottom hourly costs and top 5 hourly usage
-  for (var i = 0; i < top5HourlyUsageArray.length; i++) {
-    var usageHour = top5HourlyUsageArray[i].hour;
+  for (var i = 0; i < topHourlyUsageArray.length; i++) {
+    var usageHour = topHourlyUsageArray[i].hour;
     for (var j = 0; j < bottomHourlyCostArray.length; j++) {
       if (usageHour == bottomHourlyCostArray[j].hour) {
         //Using energy at times when costs are lowest
-        console.log(bottomHourlyCostArray[j].hour);
+        //console.log(bottomHourlyCostArray[j].hour);
       }
     }
   }
