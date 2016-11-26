@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Komdo</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="/bulma/bulma.css">
   <link rel="stylesheet" href="/public/styles.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -14,17 +15,26 @@
   <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <img class="title" src="/public/KomdoLogo.png" alt="Komdo" width="250" height="50"/>
+      <img class="title" src="/public/KomdoLogo.png" alt="Komdo" width="140" height="50"/>
+
+      <div class="user-info">
+        <h4 id="username">Sacharias Sjöqvist</h4>
+        <div id="user-photo">
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section" id="info-message">
-  <h3 class="notification-title">Welcome</h3>
-  <p class="notification-body">The price is the highest during this hours. Could you do some power savings between 8 and 9 today?</p>
+  <div class="column is-half is-offset-one-quarter">
+  <h4 class="hour"></h4>
+  <h3 class="notification-title"></h3>
+  <p class="notification-body">Hover over the suggestions to see how you can save energy.</p>
+  </div>
 </section>
 
-  <section class="section">
+  <section class="section ring-section">
     <div class="infobox">
       <div class="infobox-inner">
       <div class="ring">

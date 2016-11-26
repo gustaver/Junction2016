@@ -1,5 +1,10 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
 .section {
   background-color: #F5F5F5;
+  background-color: #fff;
 }
 .ring {
   width: 400px;
@@ -11,7 +16,7 @@
 
 }
 .infobox {
-  height: 460px;
+  height: 400px;
   position: relative;
   opacity: 0;
 }
@@ -31,6 +36,10 @@
   background-color: white;
   border-radius: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.19), 0 2px 6px rgba(0,0,0,0.23);
+  transition: .5s;
+}
+.not-circle:hover {
+  box-shadow: 0 4px 28px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.22);
 }
 
 .day-alert-text {
@@ -52,4 +61,55 @@
 
 .notification-title {
   font-weight: bolder;
+}
+
+#info-message {
+  height: 200px;
+  overflow: hidden;
+}
+
+.hour {
+  font-weight: 700;
+  font-size: 16px;
+}
+.notification-title {
+  font-weight: 700;
+  font-size: 20px;
+}
+.notification-body {
+  font-weight: 200;
+  font-size: 20px;
+}
+#info-message {
+  padding-top: 0;
+}
+.ring-section {
+  padding-top: 0;
+}
+
+.hero {
+  height: 80px;
+}
+
+.user-info {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+#username {
+  padding-right: 80px;
+}
+
+#user-photo {
+  /*background-color: #333;*/
+  background-image: url(/public/profile.jpg);
+  background-size: 100%;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  position: absolute;
+  top: -10px;
+  right: 20px;
+
 }

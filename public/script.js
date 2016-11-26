@@ -38,6 +38,9 @@ function makeNotification(id, hour, info) {
   $("#" + id_code).data(
     "message", info.body
   );
+  $("#" + id_code).data(
+    "hour", hour
+  );
 }
 
 // IMPORT DATA
@@ -52,17 +55,23 @@ $.getJSON(URL, function(data) {
 // HANDLERS
 function eventLists(){
   $('.not-circle').mouseover(function() {
+    var hour = $(this).data().hour;
+    hour = hour + ":00";
+
     $('.notification-title').text(
       $(this).data().title
     );
     $('.notification-body').text(
       $(this).data().message
     );
+    $('.hour').text(
+      hour
+    );
   });
 
   $('.not-circle').mouseout(function() {
-    $('.notification-title').text("welcome");
-    $('.notification-body').text("Hover over circles");
+    $('.notification-title').text("");
+    $('.notification-body').text("Hover over the suggestions to see how you can save energy.");
   });
 }
 });
