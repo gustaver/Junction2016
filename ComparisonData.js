@@ -33,7 +33,7 @@ module.exports.getNotifications = function() {
       //Setting up notifications and appropriate messages.
       var notificationArray = [];
       var badEnergyUsage = {"title":"Bad energy usage!", "body":"You have a high energy consumption at a peak energy price hour."};
-      var goodEnergyUsage = {"title":"Good energy usage", "body":"You have a high energy consumption at a low energy price hour"};
+      var goodEnergyUsage = {"title":"Good energy usage!", "body":"You have a high energy consumption at a low energy price hour"};
 
       // Formating the time.
       for(var i = 0; i < dataArray.length; i++){
@@ -50,7 +50,7 @@ module.exports.getNotifications = function() {
       mainData.relevantData = relevant;
 
     for (var i = 0; i < relevant.length; i++) {
-        var notification = {"id":i, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
+        var notification = {"id":i, "values": {"energyusage": relevant[i].usage, "predictedprice": relevant[i].cost, "actualcost":relevant[i].usage * relevant[i].cost}, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
         notificationArray.push(notification);
       }
       // Relevant cost/hour array
@@ -59,7 +59,8 @@ module.exports.getNotifications = function() {
         var hourlyCost = relevant[i];
         relevantHoursCostArray.push({
           "hour" : hourlyCost.hour,
-          "cost"  : hourlyCost.value
+          "cost"  : hourlyCost.value,
+            "usage" : hourlyCost.usage,
         });
       }
 
@@ -69,7 +70,9 @@ module.exports.getNotifications = function() {
         var hourlyUsage = relevant[i];
         relevantHoursUsageArray.push({
           "hour" : hourlyUsage.hour,
-          "usage"  : hourlyUsage.usage
+          "usage"  : hourlyUsage.usage,
+            "value" : hourlyUsage.value,
+            "cost" : hourlyUsage.cost,
         });
       }
 
@@ -103,7 +106,7 @@ module.exports.getNotifications = function() {
 
       //split relevant to get bottom usage data points
       var bottomHourlyUsageArray = [];
-      for (var i = 0; i < relevantHoursUsageArray.length - 10 ; i++) {
+      for (var i = 0; i < relevantHoursUsageArray.length - 5 ; i++) {
         bottomHourlyUsageArray.push(relevantHoursUsageArray[i]);
       }
 
@@ -144,8 +147,32 @@ module.exports.getNotifications = function() {
       }
 
   //Making suggestion to move energy consumption to new time
+    var cheapest = bottomHourlyCostArray[0];
+    var highest = topHourlyUsageArray[topHourlyUsageArray.length-1];
+    var difference = highest.cost - (highest.usage * cheapest.cost);
+    var hour = cheapest.hour;
 
-  for (var i = notificationArray.length - 1 ; i >= 0; i--) {
+    //Making suggestion about moving highest usage to cheapest times
+    var bottom3HourlyCostArray = [];
+    for (var i = 0; i < bottomHourlyCostArray.length; i++) {
+        var tempData = bottomHourlyCostArray[i];
+        var isAdded = false;
+        for (var j = 0; j < notificationArray.length; j++) {
+            if (tempData.hour != notificationArray[j].hour && !isAdded && bottom3HourlyCostArray.length < 3) {
+                bottom3HourlyCostArray.push(tempData);
+                isAdded = true;
+            }
+        }
+    }
+    var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
+    var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
+    var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
+    for (i = 0; i < bottom3HourlyCostArray.length; i++) {
+        var current = bottom3HourlyCostArray[i];
+        var difference1 = highest1.cost - (highest1.usage * current.cost);
+    }
+
+    for (var i = notificationArray.length - 1 ; i >= 0; i--) {
       if (notificationArray[i].message.title == "") {
           notificationArray.splice(i, 1);
         }
