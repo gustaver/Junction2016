@@ -1,5 +1,4 @@
 $(function(){
-
 // VARIABLES
 var infobox_inner = $(".infobox-inner");
 var infobox = $(".infobox");
@@ -45,16 +44,10 @@ function makeNotification(id, hour, info) {
 
 // IMPORT DATA
 $.getJSON(URL, function(data) {
-<<<<<<< HEAD
-  data.forEach(function(el) {
-    console.log("något händer i json");
-=======
   data.notificationArray.forEach(function(el) {
->>>>>>> 1490e1c6030f541b61c68ea804e7479f6057d10c
     makeNotification(el.id, el.hour, el.message);
     eventLists();
     $('.infobox').animate({opacity:1});
-  });
 });
 
 // HANDLERS
@@ -110,4 +103,5 @@ function eventLists(){
 
   });
 }
+});
 });
