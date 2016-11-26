@@ -150,5 +150,7 @@ module.exports.getNotifications = function() {
           notificationArray.splice(i, 1);
         }
       }
+      resolve(notificationArray);
+    });
   });
 }
