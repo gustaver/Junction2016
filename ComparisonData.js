@@ -162,8 +162,8 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             }
         }
     }
-    var arrow = "<img class='icon icons8-Arrow' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAb5JREFUaAXtl0FOwkAUhjtYTUhcegT2rlx0A03caJDGNsEVhyDxAtwAzmGTYigaNyTgpgtX7jmCSw2JFoYZazJJmbbTBJ3X+Log0zctfP//mH9aw8ADHUAH0AF0AB1AB/6RA83rx6ExGNT2JXlvX6QKRAjtt17PfKt7V1e9J++6PxfwA+MdxcczuxOe5MGpzOkSwNioRQ9JZDtPDRXQrGs0CuAaSIMerKOWG1pZgEV1vQISOvY3qs2a7tQrgpXNQxDAuerEIL7tTfsyyLwaFAGcsUYpGZaNWUgCvo0uG7Mk3Z6W+0DTNT3nJCLx2pmHnbe83wfXAQGrFrOABTApCjELW0DSjtyYrYIALiMzZqsiIOmF5NOU1CCWVtSgvUVwFaThqiCAxejGeR53ojQ8P4ctgNAlic3L+aS9lMHzGuA1wDayL2rNJxeZ8FzAzk7Mi795KO70waf50Yv8m1URC7gOsAe60eL0pasCz8VBWgMb9iB3uxi3R8Z9ke9iHoqAzJgUqPIRBAG5MSnHFlW9AhRiUqDKRxoXsVpMyrFFVZcAFpPv50UvKwIT0KjsOy8gdERBB9ABdAAdQAfQgR0Htu0Xgz8DP1r/AAAAAElFTkSuQmCC' width='48' height='48'>";
-    var equal = "<img class='icon icons8-Equal-Sign' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAHxJREFUaAXt1sENgCAMAEB0GddxCMdyCNdxGo1/+DQNBHM8IaX0yqOlWAQIECBAgAABAgQIBAWWVty5XU/rbMT+ce/Vt64jHpOZUwGZmpG7pu9ApGgxBAgQIPAfgeqA9JVnmOvU5OlHCQV0+inSECBAgAABAgQIECCQL/ACtycIE8OiAHkAAAAASUVORK5CYII=' width='48' height='48'>";
+    var arrow = "<b><span class = 'money' >&rarr;</span></b>";
+    var equals = "<b><span class = 'money' >&equals;</span></b>";
     var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
     var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
     var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
@@ -174,7 +174,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
-                var suggestionMessage = {"title":"Smart suggestion", "body":"<u><b>Low price hour!</b></u> <br>Move your power usage to save:<br>" + highest1.hour + ":00" + arrow + current.hour + equal + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr.<br>" + highest2.hour + ":00" + arrow + current.hour + equal + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr.<br>" + highest3.hour + ":00" + arrow + current.hour + equal + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr."};
+                var suggestionMessage = {"title":"Smart suggestion", "body":"<u><b>Low price hour!</b></u> <br>Move your power usage to save:<br>" + highest1.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr.<br>" + highest2.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr.<br>" + highest3.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr."};
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
