@@ -86,9 +86,9 @@ $(function() {
 
         for (var usageToColor of usageArray) {
         	if (usageToColor < average) {
-          	someColors.push(rgbToHex(100, 255 - parseInt(usageToColor/average * 100),0));
+          	someColors.push('#39CCCC');
           } else {
-          	someColors.push(rgbToHex(255 - parseInt(usageToColor/average / 100),100,0));
+          	someColors.push('#FF4136');
           }
         }
 
