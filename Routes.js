@@ -7,7 +7,7 @@ var jspTest = [
     "type-of-notification": "high-price",
     "message": {
       "title": "Hi!",
-      "body": "You're using alot of energy"
+      "body": "KOMDO KOMDO KOMDO KOMDO KOMDO KOMDO KOMDO KOMDO"
     }
   },
   {
