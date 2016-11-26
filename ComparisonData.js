@@ -28,7 +28,10 @@ module.exports = function(){
       futureDataArray[i].cost = ( futureDataArray[i].value * futureDataArray[i].usage );
       futureDataArray[i].hour = futureDataArray[i].date.format("HH:mm:ss");
     }
-
     console.log(futureDataArray);
+
+    mainData.data = futureDataArray;
+
+    console.log(mainData)
   });
 }
