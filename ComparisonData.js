@@ -177,11 +177,10 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
-                var textMessage = "Low price hour!" + "\n" + "Move your power usage to save: " + highest1.hour + ":00" + "->" + current.hour + "=" + "+" + difference1 + " kr." + "\n" + highest2.hour + ":00" + "->" + current.hour + "=" + "+" + difference2 + " kr." + "\n" + highest3.hour + ":00" + "->" + current.hour + "=" + "+" + difference3 + " kr.";
-                console.log(textMessage);
             }
         }
     }
+
     for (var i = notificationArray.length - 1 ; i >= 0; i--) {
       if (notificationArray[i].message.title == "") {
           notificationArray.splice(i, 1);
