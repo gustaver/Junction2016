@@ -172,7 +172,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
-                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + ":00" + " here, you will save: " + difference1 + "kr." + "<br />" + "If you move your energy usage at " + highest2.hour + ":00" + " here, you will save: " + difference2 + "kr." + "<br />" + "If you move your energy usage at " + highest3.hour + ":00" + " here, you will save: " + difference3 + "kr."};
+                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + ":00" + " here, you will save: " + difference1 + "kr." + "\n" + "If you move your energy usage at " + highest2.hour + ":00" + " here, you will save: " + difference2 + "kr." + "\n" + "If you move your energy usage at " + highest3.hour + ":00" + " here, you will save: " + difference3 + "kr."};
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
