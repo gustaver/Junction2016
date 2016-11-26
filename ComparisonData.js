@@ -143,19 +143,12 @@ module.exports.getNotifications = function() {
         }
       }
 
-<<<<<<< HEAD
   //Making suggestion to move energy consumption to new time
 
   for (var i = notificationArray.length - 1 ; i >= 0; i--) {
       if (notificationArray[i].message.title == "") {
-=======
-      for (var i = notificationArray.length - 1 ; i >= 0; i--) {
-        if (notificationArray[i].message.title == "") {
->>>>>>> 629c3bc95c7019964b758c8903b2a30b4a13f763
           notificationArray.splice(i, 1);
         }
       }
-      resolve(notificationArray);
-    });
   });
 }
