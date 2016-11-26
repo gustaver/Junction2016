@@ -1,7 +1,7 @@
 {
-  "name": "Komdo application",
-  "version": "1.0.0",
-  "description": "A komdo energy application",
+  "name": "node-js-getting-started",
+  "version": "0.2.5",
+  "description": "A sample Node.js app using Express 4",
   "engines": {
     "node": "5.9.1"
   },
