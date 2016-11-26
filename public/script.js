@@ -85,11 +85,11 @@ $(function() {
         var someColors = [];
 
         for (var usageToColor of usageArray) {
-            if (usageToColor < average) {
-                someColors.push(rgbToHex(0, 255, 100));
-            } else {
-                someColors.push(rgbToHex(255, 60, 0));
-            }
+        	if (usageToColor < average) {
+          	someColors.push(rgbToHex(0, 255 - parseInt(usageToColor/average * 100),0));
+          } else {
+          	someColors.push(rgbToHex(255 - parseInt(usageToColor/average / 100),0,0));
+          }
         }
 
         drawMultiRadiantCircle(200, 200, 194, someColors);
