@@ -118,7 +118,7 @@ module.exports.getNotifications = function() {
             var type = "bad";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00" + "you have a high energy consumption which costs you: " + topHourlyCostArray[j].cost + "kr" + "at a peak energy price hour."};
+                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00 " + "you have a high energy consumption which costs you: " + parseInt(topHourlyCostArray[j].cost) + "kr " + "at a peak energy price hour."};
                   notificationArray[k].message = badEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -137,7 +137,7 @@ module.exports.getNotifications = function() {
             var type = "good";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00" + "you have a low energy consumption which costs you: " + bottomHourlyUsageArray[j].cost + "kr" + "at a peak energy price."};
+                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00 " + "you have a low energy consumption which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + "kr " + "at a peak energy price."};
                   notificationArray[k].message = goodEnergyUsage;
                 notificationArray[k].type = type;
               }
