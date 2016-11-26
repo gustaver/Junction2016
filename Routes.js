@@ -4,7 +4,7 @@ var notifications = require(__dirname + "/ComparisonData");
 
   router.get("/today/:from/:to", function(req, res, next){
     console.log(req.params.from + " " +  req.params.to);
-    notifications.getNotifications(req.params.from, req.params.to).then(result => {
+    notifications.getNotifications(parseFloat(req.params.from), parseFloat(req.params.to)).then(result => {
     res.send(result);
   });
 });
