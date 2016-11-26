@@ -58,7 +58,7 @@ module.exports = function(){
     mainData.relevantData = relevant;
 
     for (var i = 0; i < relevant.length; i++) {
-        var notification = {"hour":relevant[i].hour,"type":"","message":{"title":"","body":""}};
+        var notification = {"id":i, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
         notificationArray.push(notification);
     }
     // Relevant cost/hour array
@@ -150,6 +150,8 @@ module.exports = function(){
       }
     }
   }
+
+  //Making suggestion to move energy consumption to new time
 
   for (var i = notificationArray.length - 1 ; i >= 0; i--) {
       if (notificationArray[i].message.title == "") {
