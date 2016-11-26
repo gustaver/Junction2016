@@ -1,0 +1,9 @@
+data points:
+
+- Högsta energiförbrukningstimman på en dag.
+- Högsta energiförbrukningsdagen på en vecka
+- Högsta energiförbrukningsmånaden på ett år.
+
+- Lägsta energiförbrukningstimman på en dag.
+- Lägsta energiförbrukningsdagen på en vecka
+- Lägsta energiförbrukningsmånaden på ett år.

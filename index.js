@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-var comp = require("./ComparisonData")
+var comp = require(__dirname + "/ComparisonData")
 
 app.set('port', (process.env.PORT || 5000));
 
