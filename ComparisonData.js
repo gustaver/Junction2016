@@ -1,4 +1,3 @@
-var handelingFutureData = require(__dirname  + '/Future/HandelingFutureData');
 var futureData = require(__dirname + '/Future/GettingFutureData');
 var dailyUsageData = require(__dirname + "/xml-converter/raw-data-converter")
 
@@ -45,7 +44,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
       mainData.relevantData = relevant;
 
     for (var i = 0; i < relevant.length; i++) {
-        var notification = {"id":i, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
+        var notification = {"id":i, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}, "textmessage": ""};
         notificationArray.push(notification);
       }
 
@@ -116,7 +115,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "bad";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00 " + "you have a high energy consumption which costs you: " + parseInt(topHourlyCostArray[j].cost) + " kr " + "at a peak energy price hour."};
+                  var badEnergyUsage = {"title":"High electricity usage at a high cost!", "body":"At " + hour + ":00 " + "you have a high energy consumption at a peak electricity hour which costs you: " + parseInt(topHourlyCostArray[j].cost) + " kr"};
                   notificationArray[k].message = badEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -135,7 +134,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "good";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00 " + "you have a low energy consumption which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + " kr " + "at a peak energy price."};
+                  var goodEnergyUsage = {"title":"High electricity usage at a low cost!", "body":"At " + hour + ":00 " + "you have a low energy consumption at a peak electricity cost hour which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + " kr."};
                   notificationArray[k].message = goodEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -162,6 +161,8 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             }
         }
     }
+    var arrow = "<b><span class = 'money' >&rarr;</span></b>";
+    var equals = "<b><span class = 'money' >&equals;</span></b>";
     var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
     var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
     var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
@@ -172,10 +173,12 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
-                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + ":00" + " here, you will save: " + difference1 + " kr." + "\n" + "If you move your energy usage at " + highest2.hour + ":00" + " here, you will save: " + difference2 + " kr." + "\n" + "If you move your energy usage at " + highest3.hour + ":00" + " here, you will save: " + difference3 + " kr."};
+                var suggestionMessage = {"title":"Smart suggestion", "body":"<u><b>Low price hour!</b></u> <br>Move your power usage to save:<br>" + highest1.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr.<br>" + highest2.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr.<br>" + highest3.hour + ":00" + arrow + current.hour + equals + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr."};
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
+                var textMessage = "Low price hour!" + "\n" + "Move your power usage to save: " + highest1.hour + ":00" + "->" + current.hour + "=" + "+" + difference1 + " kr." + "\n" + highest2.hour + ":00" + "->" + current.hour + "=" + "+" + difference2 + " kr." + "\n" + highest3.hour + ":00" + "->" + current.hour + "=" + "+" + difference3 + " kr.";
+                notificationArray[j].textmessage = textMessage;
             }
         }
     }
@@ -186,7 +189,12 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
-      resolve(notificationArray);
+      var notificationObj = {
+        notificationArray: notificationArray,
+        energyUsageData: usageDataArray
+      }
+
+      resolve(notificationObj);
     });
   });
 }
