@@ -17,6 +17,14 @@ var jspTest = [
     "message": {
       "title": "Hi!",
       "body": "You can use energy now!"
+    },
+     {
+    "id": 3,
+    "hour": 22,
+    "type-of-notification": "low-price",
+    "message": {
+      "title": "Hi!",
+      "body": "You can use 22 now!"
     }
   }
 ];
