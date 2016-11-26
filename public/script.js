@@ -1,5 +1,4 @@
 $(function(){
-
 // VARIABLES
 var infobox_inner = $(".infobox-inner");
 var infobox = $(".infobox");
@@ -45,33 +44,64 @@ function makeNotification(id, hour, info) {
 
 // IMPORT DATA
 $.getJSON(URL, function(data) {
-  data.forEach(function(el) {
+  data.notificationArray.forEach(function(el) {
     makeNotification(el.id, el.hour, el.message);
     eventLists();
     $('.infobox').animate({opacity:1});
-  });
 });
 
 // HANDLERS
 function eventLists(){
   $('.not-circle').mouseover(function() {
+    that = this;
     var hour = $(this).data().hour;
-    hour = hour + ":00";
+    hourText = hour + ":00";
 
-    $('.notification-title').text(
-      $(this).data().title
-    );
-    $('.notification-body').text(
-      $(this).data().message
-    );
-    $('.hour').text(
-      hour
-    );
+    if (hour < 10) {
+      hourText = "0" + hourText;
+    }
+
+    $('#info-message').children().animate({
+      opacity: 0
+    }, {
+      duration: 40,
+      complete: function() {
+        $('.notification-title').text(
+          $(that).data().title
+        );
+        $('.notification-body').text(
+          $(that).data().message
+        );
+        $('.hour').text(
+          hourText
+        );
+        $('#info-message').children().animate({
+          opacity: 1
+        }, {
+          duration: 40
+        });
+      }
+    });
   });
 
   $('.not-circle').mouseout(function() {
-    $('.notification-title').text("");
-    $('.notification-body').text("Hover over the suggestions to see how you can save energy.");
+    $('#info-message').children().animate({
+      opacity: 0
+    }, {
+      duration: 40,
+      complete: function() {
+        $('.notification-title').text("");
+        $('.hour').text("");
+        $('.notification-body').text("Hover over the suggestions to see how you can save energy.");
+        $('#info-message').children().animate({
+          opacity: 1
+        }, {
+          duration: 40
+        });
+      }
+    });
+
   });
 }
+});
 });
