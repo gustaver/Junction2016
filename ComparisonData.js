@@ -52,7 +52,7 @@ module.exports = function(){
 
     mainData.relevantData = relevant;
 
-    // the relevant cost array
+    // Relevant cost/hour array
     var relevantHoursCostArray = [];
     for(var i = 0; i < relevant.length; i++){
       var hourlyCost = relevant[i];
@@ -62,6 +62,7 @@ module.exports = function(){
       });
     }
 
+    //Relevant usage/hour array
     var relevantHoursUsageArray = [];
     for(var i = 0; i < relevant.length; i++){
       var hourlyUsage = relevant[i];
@@ -71,8 +72,15 @@ module.exports = function(){
       });
     }
 
+    //Quick sort relevant cost/hour array
+  relevantHoursCostArray.sort(function(a, b) {
+    return parseInt(a.cost) - parseInt(b.cost);
+  });
 
-    
+  //Quick sort relevant usage/hour array
+  relevantHoursUsageArray.sort(function(a, b) {
+    return parseInt(a.usage) - parseInt(b.usage);
+  });
     console.log(relevantHoursUsageArray);
   });
 }
