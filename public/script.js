@@ -45,7 +45,7 @@ function makeNotification(id, hour, info) {
 
 // IMPORT DATA
 $.getJSON(URL, function(data) {
-  data.forEach(function(el) {
+  data.notificationArray.forEach(function(el) {
     makeNotification(el.id, el.hour, el.message);
     eventLists();
     $('.infobox').animate({opacity:1});

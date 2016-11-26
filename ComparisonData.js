@@ -186,7 +186,12 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
-      resolve(notificationArray);
+      var notificationObj = {
+        notificationArray: notificationArray,
+        energyUsageData: usageDataArray
+      }
+
+      resolve(notificationObj);
     });
   });
 }
