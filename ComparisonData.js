@@ -116,7 +116,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "bad";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00 " + "you have a high energy consumption which costs you: " + parseInt(topHourlyCostArray[j].cost) + " kr " + "at a peak energy price hour."};
+                  var badEnergyUsage = {"title":"High electricity usage at a high cost!", "body":"At " + hour + ":00 " + "you have a high energy consumption at a peak electricity hour which costs you: " + parseInt(topHourlyCostArray[j].cost) + " kr"};
                   notificationArray[k].message = badEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -135,7 +135,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "good";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00 " + "you have a low energy consumption which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + " kr " + "at a peak energy price."};
+                  var goodEnergyUsage = {"title":"High electricity usage at a low cost!", "body":"At " + hour + ":00 " + "you have a low energy consumption at a peak electricity cost hour which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + " kr."};
                   notificationArray[k].message = goodEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -186,7 +186,12 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
-      resolve(notificationArray);
+      var notificationObj = {
+        notificationArray: notificationArray,
+        energyUsageData: usageDataArray
+      }
+
+      resolve(notificationObj);
     });
   });
 }
