@@ -139,10 +139,10 @@ $(function() {
         arrayUsage = data.energyUsageData;
         // HERE WE MAKE THE CIRCLE
         makeCircle(arrayUsage);
-
         data.notificationArray.forEach(function(el) {
             makeNotification(el.id, el.hour, el.message);
             eventLists();
+            $('.sk-chasing-dots').remove();
             $('.infobox').animate({
                 opacity: 1
             });
