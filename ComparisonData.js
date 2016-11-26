@@ -116,7 +116,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "bad";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00 " + "you have a high energy consumption which costs you: " + parseInt(topHourlyCostArray[j].cost) + "kr " + "at a peak energy price hour."};
+                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00 " + "you have a high energy consumption which costs you: " + parseInt(topHourlyCostArray[j].cost) + " kr " + "at a peak energy price hour."};
                   notificationArray[k].message = badEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -135,7 +135,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             var type = "good";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00 " + "you have a low energy consumption which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + "kr " + "at a peak energy price."};
+                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00 " + "you have a low energy consumption which costs you: " + parseInt(bottomHourlyUsageArray[j].cost) + " kr " + "at a peak energy price."};
                   notificationArray[k].message = goodEnergyUsage;
                 notificationArray[k].type = type;
               }
@@ -172,7 +172,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
-                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + ":00" + " here, you will save: " + difference1 + "kr." + "\n" + "If you move your energy usage at " + highest2.hour + ":00" + " here, you will save: " + difference2 + "kr." + "\n" + "If you move your energy usage at " + highest3.hour + ":00" + " here, you will save: " + difference3 + "kr."};
+                var suggestionMessage = {"title":"Suggestion", "body":"This is a low price hour. If you move your energy usage at " + highest1.hour + ":00" + " here, you will save: " + difference1 + " kr." + "\n" + "If you move your energy usage at " + highest2.hour + ":00" + " here, you will save: " + difference2 + " kr." + "\n" + "If you move your energy usage at " + highest3.hour + ":00" + " here, you will save: " + difference3 + " kr."};
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
