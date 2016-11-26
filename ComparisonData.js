@@ -85,7 +85,7 @@ module.exports.getNotifications = function() {
 
       //Split relevant to get top 5 cost data points
       var topHourlyCostArray = [];
-      for (var i = relevantHoursCostArray.length - 5; i < relevantHoursCostArray.length; i++) {
+      for (var i = relevantHoursCostArray.length - 10; i < relevantHoursCostArray.length; i++) {
         topHourlyCostArray.push(relevantHoursCostArray[i]);
       }
 
