@@ -24,7 +24,7 @@ function makeNotification(id, hour, info) {
 
   top_val = center;
   left_val = center + 195;
-  top_val = Math.floor( center + (-195 * Math.sin(turn_val - (Math.PI/2))));
+  top_val = Math.floor( center + (-195 * Math.sin((Math.PI/2) - turn_val)));
   left_val = Math.floor( center + (195 * Math.cos(turn_val - (Math.PI/2))));
 
   $("#" + id_code).css({
