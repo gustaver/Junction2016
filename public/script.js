@@ -53,7 +53,7 @@ $.getJSON(URL, function(data) {
 function eventLists(){
   $('.not-circle').mouseover(function() {
     $('.notification-title').text(
-      $(this).data().title
+      $(this).data().hour + $(this).data().title
     );
     $('.notification-body').text(
       $(this).data().message
