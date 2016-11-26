@@ -38,6 +38,11 @@ module.exports = function(){
     var lowerEnd = 6;
     var upperEnd = 22;
 
+    //Setting up notifications and appropriate messages.
+    var notificationArray = [];
+    var badEnergyUsage = {"title":"Bad energy usage!", "body":"You have a high energy consumption at a peak energy price hour."};
+    var goodEnergyUsage = {"title":"Good energy usage", "body":"You have a high energy consumption at a low energ price hour"};
+
     // Formating the time.
     for(var i = 0; i < dataArray.length; i++){
       var hour = dataArray[i].hour;
@@ -52,6 +57,10 @@ module.exports = function(){
 
     mainData.relevantData = relevant;
 
+    for (var i = 0; i < relevant.length; i++) {
+        var notification = {"hour":relevant[i].hour,"type":"","message":{"title":"","body":""}};
+        notificationArray.push(notification);
+    }
     // Relevant cost/hour array
     var relevantHoursCostArray = [];
     for(var i = 0; i < relevant.length; i++){
@@ -87,21 +96,18 @@ module.exports = function(){
   for (var i = relevantHoursCostArray.length - 5; i < relevantHoursCostArray.length; i++) {
     topHourlyCostArray.push(relevantHoursCostArray[i]);
   }
-  //console.log(topHourlyCostArray);
 
   //Split relevant to get top 5 usage data points
   var topHourlyUsageArray = [];
   for (var i = relevantHoursUsageArray.length - 5; i < relevantHoursUsageArray.length; i++) {
     topHourlyUsageArray.push(relevantHoursUsageArray[i]);
   }
-  //console.log(topHourlyUsageArray);
 
   //Split relevant to get bottom cost data points
   var bottomHourlyCostArray = [];
   for (var i = 0; i < relevantHoursCostArray.length - 10 ; i++) {
     bottomHourlyCostArray.push(relevantHoursCostArray[i]);
   }
-  //console.log(bottomHourlyCostArray);
 
   //split relevant to get bottom usage data points
   var bottomHourlyUsageArray = [];
@@ -115,7 +121,14 @@ module.exports = function(){
     for (var j = 0; j < topHourlyCostArray.length; j++) {
       if (usageHour == topHourlyCostArray[j].hour) {
         //Using energy at times when costs are the highest
-        console.log(topHourlyCostArray[j].hour);
+        var hour = topHourlyCostArray[j].hour;
+          var type = "bad";
+          for (var k = 0; k < notificationArray.length; k++) {
+              if (notificationArray[k].hour == hour) {
+                  notificationArray[k].message = badEnergyUsage;
+                  notificationArray[k].type = type;
+              }
+          }
       }
     }
   }
@@ -126,10 +139,23 @@ module.exports = function(){
     for (var j = 0; j < bottomHourlyCostArray.length; j++) {
       if (usageHour == bottomHourlyCostArray[j].hour) {
         //Using energy at times when costs are lowest
-        //console.log(bottomHourlyCostArray[j].hour);
+        var hour = bottomHourlyCostArray[j].hour;
+          var type = "good";
+          for (var k = 0; k < notificationArray.length; k++) {
+              if (notificationArray[k].hour == hour) {
+                  notificationArray[k].message = goodEnergyUsage;
+                  notificationArray[k].type = type;
+              }
+          }
       }
     }
   }
-    //console.log(bottomHourlyUsageArray);
+
+  for (var i = notificationArray.length - 1 ; i >= 0; i--) {
+      if (notificationArray[i].message.title == "") {
+          notificationArray.splice(i, 1);
+      }
+  }
+  console.log(notificationArray);
   });
 }
