@@ -31,8 +31,6 @@ module.exports.getNotifications = function() {
 
       //Setting up notifications and appropriate messages.
       var notificationArray = [];
-      var badEnergyUsage = {"title":"Bad energy usage!", "body":"You have a high energy consumption at a peak energy price hour."};
-      var goodEnergyUsage = {"title":"Good energy usage!", "body":"You have a high energy consumption at a low energy price hour"};
 
       // Formating the time.
       for(var i = 0; i < dataArray.length; i++){
@@ -52,6 +50,7 @@ module.exports.getNotifications = function() {
         var notification = {"id":i, "values": {"energyusage": relevant[i].usage, "predictedprice": relevant[i].cost, "actualcost":relevant[i].usage * relevant[i].cost}, "hour":parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}};
         notificationArray.push(notification);
       }
+
       // Relevant cost/hour array
       var relevantHoursCostArray = [];
       for(var i = 0; i < relevant.length; i++){
@@ -119,7 +118,8 @@ module.exports.getNotifications = function() {
             var type = "bad";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                notificationArray[k].message = badEnergyUsage;
+                  var badEnergyUsage = {"title":"Bad energy usage!", "body":"At " + hour + ":00" + "you have a high energy consumption which costs you: " + topHourlyCostArray[j].cost + "kr" + "at a peak energy price hour."};
+                  notificationArray[k].message = badEnergyUsage;
                 notificationArray[k].type = type;
               }
             }
@@ -137,7 +137,8 @@ module.exports.getNotifications = function() {
             var type = "good";
             for (var k = 0; k < notificationArray.length; k++) {
               if (notificationArray[k].hour == hour) {
-                notificationArray[k].message = goodEnergyUsage;
+                  var goodEnergyUsage = {"title":"Good energy usage!", "body":"At " + hour + ":00" + "you have a low energy consumption which costs you: " + bottomHourlyUsageArray[j].cost + "kr" + "at a peak energy price."};
+                  notificationArray[k].message = goodEnergyUsage;
                 notificationArray[k].type = type;
               }
             }
