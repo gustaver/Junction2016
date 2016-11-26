@@ -3,6 +3,8 @@ var router = express.Router();
 var notifications = require(__dirname + "/ComparisonData");
 
 notifications.getNotifications().then(result => {
+
+  console.log(result);
   router.get("/today", function(req, res, next){
     res.send(result);
   });
