@@ -1,4 +1,3 @@
-var handelingFutureData = require(__dirname  + '/Future/HandelingFutureData');
 var futureData = require(__dirname + '/Future/GettingFutureData');
 var dailyUsageData = require(__dirname + "/xml-converter/raw-data-converter")
 
