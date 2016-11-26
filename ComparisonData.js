@@ -13,7 +13,8 @@ var callingGetFutureData = function(results){
 
 module.exports = function(){
   var mainData = {
-    data: []
+    data: [],
+    relevantData: []
   }
   var futureDataArray = [];
 
@@ -28,10 +29,50 @@ module.exports = function(){
       futureDataArray[i].cost = ( futureDataArray[i].value * futureDataArray[i].usage );
       futureDataArray[i].hour = futureDataArray[i].date.format("HH:mm:ss");
     }
-    console.log(futureDataArray);
+    //console.log(futureDataArray);
 
     mainData.data = futureDataArray;
 
-    console.log(mainData)
+
+    var dataArray = mainData.data;
+    var lowerEnd = 6;
+    var upperEnd = 22;
+
+    // Formating the time.
+    for(var i = 0; i < dataArray.length; i++){
+      var hour = dataArray[i].hour;
+      var hour1 = hour.substring(0,2);
+      dataArray[i].hour = hour1;
+    }
+
+    var relevant = [];
+    for(var i = lowerEnd; i <= upperEnd; i++){
+      relevant.push(dataArray[i]);
+    }
+
+    mainData.relevantData = relevant;
+
+    // the relevant cost array
+    var relevantHoursCostArray = [];
+    for(var i = 0; i < relevant.length; i++){
+      var hourlyCost = relevant[i];
+      relevantHoursCostArray.push({
+        "hour" : hourlyCost.hour,
+        "cost"  : hourlyCost.cost
+      });
+    }
+
+    var relevantHoursUsageArray = [];
+    for(var i = 0; i < relevant.length; i++){
+      var hourlyUsage = relevant[i];
+      relevantHoursUsageArray.push({
+        "hour" : hourlyUsage.hour,
+        "usage"  : hourlyUsage.usage
+      });
+    }
+
+
+    
+    console.log(relevantHoursUsageArray);
   });
 }
