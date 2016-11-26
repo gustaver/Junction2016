@@ -2,7 +2,7 @@ var handelingFutureData = require(__dirname  + '/Future/HandelingFutureData');
 var futureData = require(__dirname + '/Future/GettingFutureData');
 var dailyUsageData = require(__dirname + "/xml-converter/raw-data-converter")
 
-module.exports.getNotifications = function() {
+module.exports.getNotifications = function(lowerEnd, upperEnd) {
   return new Promise((resolve, reject) => {
     var mainData = {
       data: [],
@@ -26,8 +26,6 @@ module.exports.getNotifications = function() {
 
 
       var dataArray = mainData.data;
-      var lowerEnd = 6;
-      var upperEnd = 22;
 
       //Setting up notifications and appropriate messages.
       var notificationArray = [];

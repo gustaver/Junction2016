@@ -2,13 +2,19 @@ var express = require("express");
 var router = express.Router();
 var notifications = require(__dirname + "/ComparisonData");
 
-notifications.getNotifications().then(result => {
-
-  console.log(result);
-  router.get("/today", function(req, res, next){
+  router.get("/today/:from/:to", function(req, res, next){
+    console.log(req.params.from + " " +  req.params.to);
+    notifications.getNotifications(req.params.from, req.params.to).then(result => {
     res.send(result);
   });
-})
+});
+
+router.get("/today", function(req, res, next){
+
+  notifications.getNotifications(6, 22).then(result => {
+  res.send(result);
+});
+});
 
 /*
 var jspTest = [
