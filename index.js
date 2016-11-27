@@ -19,7 +19,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/app', function(request, response) {
-  response.render('app');
+  response.render('index');
 });
 
 app.listen(app.get('port'), function() {
