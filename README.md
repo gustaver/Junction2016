@@ -1,4 +1,4 @@
-[logo]: https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/451/000/datas/gallery.jpg 
+![Komdo logo](komdo.jpg)
 
 Komdo
 ===================
