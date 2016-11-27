@@ -122,10 +122,16 @@ $(function() {
           $("#" + id_code).html(
             badIcon
           );
+          $("#" + id_code).css({
+            "background-color": "#FF4136"
+          });
         } else if (suggestion == "good") {
           $("#" + id_code).html(
             goodIcon
           );
+          $("#" + id_code).css({
+            "background-color": "#39CCCC"
+          });
         }
 
 
