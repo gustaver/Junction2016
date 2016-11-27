@@ -124,6 +124,13 @@
   padding-top: 0;
 }
 
+.info {
+  opacity: .8;
+  height: 25px;
+  width:25px;
+  margin-top: 8px;
+}
+
 .hero {
   height: 80px;
 }
