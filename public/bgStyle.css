@@ -1,0 +1,12 @@
+body {
+    background-image: url("/public/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: local;
+    background-size:cover;
+}
+
+.but {
+  background-color: transparent;
+
+}
