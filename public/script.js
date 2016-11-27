@@ -6,6 +6,7 @@ $(function() {
 
     var suggestionIcon = '<img class="icon icons8-Info-Popup" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAdZJREFUaAVjYBgFoyFAUQgw4tJtF7C1npGRoQGXPD3Fge5oPLDOG6tbmHA5ZLA4HuS+//8Z6nG5E6cHcGkYbOKjHhjoGMGZiXff+/1/oB2HbL+rEitWt44mIeRQGgj2aAwMRKgj2znkY4AF2TfUZB+99ZFh1+V3YCPddIUYrNX4qWk83CyaeOD2i+8MM/c9g1sCYovxsTGoSnDCxajFoEkSuv7sK4b7sIlhKCJDgCYe0JTixnAKNjEMRWQI0CQJgZJKupMUSh6gRfIB+Rdr9QySGG1KgEKBDoAmeYAO7oZbQZM8ADI9bsZ1uCUgxqIMTRQ+tThDPgZGPUCtpECuOaMxQG7IUUvfaAxQKyTJNWc0BsgNOWrpG/IxMNoapVZSINecIZ+ERj1AbtRTSx/OGAAOTVcDLRkcI9T/GRpxeRhnKYRLAz7x3ff+TAX6OQufGmA3fJqrEks2fjXEy+KMAeKNQKhkecicD+TtQYhgsPZA1WBIkCtA1RgAOWLLw/+C7H//nAAy1dAcdesnM4uFjzzjezRxirhUjQGQS0AOZPz/1xcYMnCHgtggMWo7HmQf1T0AMtRFmeMWMPuHAZl/wBjIBouBJIcS2HP3VxYIDyU3j7p1xIUAAAJKXL7OarVJAAAAAElFTkSuQmCC" width="48" height="48">';
 
+    suggestionIcon = '<img class="icon info" src="/public/info_green.svg">';
 
     // VARIABLES
     var infobox_inner = $(".infobox-inner");
