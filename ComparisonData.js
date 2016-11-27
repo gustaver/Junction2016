@@ -173,7 +173,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
-                var suggestionMessage = {"title":"Smart suggestion - Low price hour", "body":"<br>Move your power usage to save money:<br>" + highest1.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr<br>" + highest2.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr<br>" + highest3.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr"};
+                var suggestionMessage = {"title":"Smart suggestion - Low price hour", "body":"Move your power usage to save money:<br>" + highest1.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr<br>" + highest2.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr<br>" + highest3.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr"};
                 var type = "suggestion";
                 notificationArray[j].message = suggestionMessage;
                 notificationArray[j].type = type;
