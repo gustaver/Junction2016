@@ -2,6 +2,10 @@
   font-family: 'Lato', sans-serif;
 }
 
+#canvas {
+  opacity: .8;
+}
+
 .section {
   background-color: #F5F5F5;
   background-color: #fff;
