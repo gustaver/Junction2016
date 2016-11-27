@@ -15,11 +15,11 @@ app.set('view engine', 'ejs');
 app.use('/api',routes);
 
 app.get('/', function(request, response) {
-  response.render('index');
+  response.render('start');
 });
 
-app.get('/starter', function(request, response) {
-  response.render('start');
+app.get('/app', function(request, response) {
+  response.render('index');
 });
 
 app.listen(app.get('port'), function() {
