@@ -1,4 +1,12 @@
 $(function() {
+    // Icons
+    var goodIcon = '<img class="icon icons8-Thumb-Up" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAvJJREFUaAXtWD1oFEEU/mbvsne5H4mJgop/MRAuxggS0l6hIIJgI6QNJJYitgrinTbapIyVgYhaWCiCoI0IKQTNkUaPhIApFNKI2hjindyNby5suCSzs3+zyQo7sNmd99689703u9+9DBCPuAJxBeIK7GYF2E4E55XyRYA/plhfAHYfywPP2ehoQ0dsQ4cTlQ/+rpQk8E/JpouuYXp+hhMLV1VrvOhCTwBZ4wwB2rMZFL++ee5/Fn4CBi9K4B3n7yc7JXLPovATAD8vRZVtaImtxYkUIAl55W4f3c5K9clVLQQSagJgjUkCTx/xttFE9eTaNqkPQWgJ8ErpGjgu2WBaiTSN8rnyZQIuqi8fDJ/kCu9S7TvA50tFsNaPVsIWDsesrc6jQmsCvHJnCE28JAxpJQ6WEDZahrYE6J0/CjRfEyrxi6saH9jwrQWVgRedFirjlZsHAXOeAh/wElxpyzBHfdMDpPkTNliq29nKKG7ddureKj1k7BZa8he9vBeovyLW1wdeOOcYoT8jWEM/zW5Y8bbeA79C57prMxRocKtjjfMJla/ACSQYZL2OKqZWXeAEtKKRO3soF69L7b8B1aqd0LV9xKpwkUmg/v0HanSJkchmYPZ05ZP5vAp7SxeZBCzgqX3drQRoXgDn06GzkGOJXBqY+3uQOXbYAt++KlwWao+0G88xC4VW9f+JhSQMtEgM5NgHieJFhoUEdXplIJFAJL4BvwwUmQQEEL/D1StUPHQEE4XT6DAMPFqq4s3XZb/xvK5T9kHCmatXaKz/FPam0sh1mBgvDHkF4d1eMBBj4+jEbafFrnbAyUkQfRAGEnFd7cDM0mf8qv3B7791TC9qOxHZyFswkGgjxJXM5aweqLxhoHhwtQOzK98grjCGYCBT7lj0QLb/SlpLXO2AZSy7NzSe8cj8O8kCJ/D2Z2qMgnx0CuRD78hAwqeeY5VqyaS+/QqdJFwgj3SaEOB4pa0HUh2n+ChIvCSuQFyBuAIhVOAfWyGw6OaCuM8AAAAASUVORK5CYII=" width="48" height="48">';
+
+    var badIcon = '<img class="icon icons8-Thumbs-Down" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAvBJREFUaAXtWE1oE0EU/iZpk/hTqa2CVkR6qfX3YhLEQ0G8eNOTBxEKrRevvSm0TcWDeBIRPVmo4MGCCJ5EUDDgQaz1UIOhYLEqXsQfNP9NMr6JFjbJ7O5kf8wGdmDYmffevvm+92YeuwP4zY+AHwE/Au2MAHNicZ5KhJDHeXCcBEOMfO6w7JfhFcBuI8LvsQOJkpmfLl2DW1ezpNuoq/+neDjIB5Ev3qdpnMDbb1wEgMcoIEPk7KKZw4CZgZn+RF9xjmziZnYW9OMq79gmEGQYUVnILRv9LaRZcWRgN8aHD6M7EMDd5RQef1zRaO0NS1+/oZzLI7ytD8FNdTv2jopnpQyMDh3E1nAEm7tDGBs+pOK3JZtKNofc6udaL2cyaTA2hg2YVnGilAEVR1ZtQtv7IbqmDdMhvoACA1U300qklIG55bf4USwgs1bCbHpJs5ZLQ1GJOJ+lSjRjtoJSBpJfPkH0NjRRiQxLqVIG2gBceUmlDCh7s2hopxJ5goDgXatEVI1EKQ3196a7enquic8Js5h4goCdSuQJAtIoK34TdcIhNvwm6gQC0gStCz2zhaxWIs8QEBG1Uok8Q6CpEjH8Xt8mRk/PEGgC6VehppDIBRWOpFzzf6S2y+jT7+FRukVIuQjX8M/MiXsE8IVLO4HQIpGwfp3SGAHF6xVHCIi1+eKVPaiWX9BwVyOWhvlLFk0cbZBZnjpGQCDgC5fph7kqzkSvISIW3M+OTL4ztFFU2j4D2nVYdGoJ1cBpkhW08qYxr5xqklkUOEpAYGDxqefg7BwNK7qYHLxLcpxAjURs+gE9J3QJcDh2N+MKgRqJaOIG3ZU+0iExwOfngzq6lsSuEaih4EGRhbIEUQB7VyMSecsiVwmw6OR7QvRMimoty6XyFoWuEviLhT2RYipt6RACVZaUEPjAjk3kJfKWRe5nIFt9Q6h+1SNj1+vn1meuE2DHE3SI2VmC+JP6axqfwcq+m9Yh+2/6EfAj4EfASxH4A9QUyEQHKOl/AAAAAElFTkSuQmCC" width="48" height="48">';
+
+    var suggestionIcon = '<img class="icon icons8-Info-Popup" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAdZJREFUaAVjYBgFoyFAUQgw4tJtF7C1npGRoQGXPD3Fge5oPLDOG6tbmHA5ZLA4HuS+//8Z6nG5E6cHcGkYbOKjHhjoGMGZiXff+/1/oB2HbL+rEitWt44mIeRQGgj2aAwMRKgj2znkY4AF2TfUZB+99ZFh1+V3YCPddIUYrNX4qWk83CyaeOD2i+8MM/c9g1sCYovxsTGoSnDCxajFoEkSuv7sK4b7sIlhKCJDgCYe0JTixnAKNjEMRWQI0CQJgZJKupMUSh6gRfIB+Rdr9QySGG1KgEKBDoAmeYAO7oZbQZM8ADI9bsZ1uCUgxqIMTRQ+tThDPgZGPUCtpECuOaMxQG7IUUvfaAxQKyTJNWc0BsgNOWrpG/IxMNoapVZSINecIZ+ERj1AbtRTSx/OGAAOTVcDLRkcI9T/GRpxeRhnKYRLAz7x3ff+TAX6OQufGmA3fJqrEks2fjXEy+KMAeKNQKhkecicD+TtQYhgsPZA1WBIkCtA1RgAOWLLw/+C7H//nAAy1dAcdesnM4uFjzzjezRxirhUjQGQS0AOZPz/1xcYMnCHgtggMWo7HmQf1T0AMtRFmeMWMPuHAZl/wBjIBouBJIcS2HP3VxYIDyU3j7p1xIUAAAJKXL7OarVJAAAAAElFTkSuQmCC" width="48" height="48">';
+
+
     // VARIABLES
     var infobox_inner = $(".infobox-inner");
     var infobox = $(".infobox");
@@ -69,7 +77,7 @@ $(function() {
     }
 
 
-    function makeNotification(id, hour, info) {
+    function makeNotification(id, hour, info, suggestion) {
         id_code = "circle" + id;
 
         var circle_html =
@@ -106,14 +114,21 @@ $(function() {
             "hour", hour
         );
 
-        var iconInfo = '<img class="icon icons8-Good-Quality" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABDZJREFUaAXtWV1IVEEUPrO7uv6srVlWhkEQ/YjYQz9S0EMFPSWpGxUoVI8ZQU9BEPQQ+NRbFL5FCT2UpBn2UEEJBUlUBGFGQUVEUWAq/q+7dzpn9C7X3ZmdGXczhJ2XO3fm/Hzf2Zm5Z84C5FouArkILOkIsGyhP9jVsJ352H7gUIs2q7jDK30MSsi+w2EU575jdwAYvMS5Jw8a772muUxbRgT23jkSCgVjLQj6BHBebQWGsX4kc3NsOtDWe7RjzErXI7xgAnXdjed4nF9gDMIee9ZdzmGE+VlrT33XZWtlVLAmIJYK51eBsV0LcajU4byPM3bGdmlZEajrPNTMmK+dA/iUQOYmCtisyBR3dKKJeQTjcO4c74ncv5UY1HT8mvnEdF1n4ymM+nUc0JIO+fxwraIKmsMVEPIF4O3UaMKOpsPQR2TTsapfH29/eKWRFdPaSJIURR4YbzMxSDJbgyWw0p8HebhBGkrKoToYMlWdlUNfwqeBlpaAWPO4bAxsJURqCuYDrswLJuZMO7RUybdOXkuA4YY1WfOuo3xc+3sKS91X8YzhUWPbyCf51umlJUBHpe1p0xReA6X+wDy/I05s3rvxC550AkMaBSUB+kjROZ9GN2VqX3EZREpWpYx/jk6mjJkOEAbCopJXEqAvrM1HamfhMjhbti7liPoyMwmD8RmVf+04YRBfe4WkkoBIDxRKycPVwWI4v2I9+FPgAzwe+5Msbv9OqYqiSc90cfIAGJ3DWxB8a/kGoM27kPYpOgHtIz+13wrc1DtkX2mpV5FVGqBZHciHSxmAJxcb84vg9PJKrTcVJimBuZRYa/RkeC0ULjDyXuOFzCAhmE3TvWqiLyeA+XyKpGRgW4FI9yUzdkPvpo2yaSkmKQG6jJhAKMKcZ7GaCpOUgHuTWixwNQa5kgqTlMBiAXf9RC1SblfHfUoJ0B3WFViM59OJIa0bFSYpgbkLuNZotgQejg1qTakwSQmgtQGtxSwJUJ467BilGlJMcgJY+sgSPq2Z37EozJik2wpMUgJUt9F6zpIApREmTYVJSkDkHFS30bQJJ66RSD9N+s8MNjDeSfpleRBZlxIQbrHolN49wBvzy7rUlB9zZdoD2pYGi5IAVcyo6JTO+I2RHzCZwRk+5ehLLoSBsKhwKHOBrx3vo5ubquIYogMq5XFcAr3jQ+IUKcUqRPJVUqVHUX8+MQxXhr6B7rqJVbuLjw7f7VXZkt4HvMJ1nfUvbO/FXv2M+lit64l0705nQ7mEXCUq9yFL/W/tKmTpST7Jt86clgDtfir36Qxle558qk4ery8tARIWtUrOWryK/7SPvkzro9o94AVqU9z16pn2xbKxLO4a/QIuAIoKboZa/DOjzx3L2hNtkm3TyLt+rX4BV4meS/YPDi+JJf0Xk5cI9UUt6T/8yZeMI/eei0AuAkssAn8BGPNwkW0pb9gAAAAASUVORK5CYII=" width="48" height="48">';
+        if (suggestion == "suggestion") {
+          $("#" + id_code).html(
+            suggestionIcon
+          );
+        } else if (suggestion == "bad") {
+          $("#" + id_code).html(
+            badIcon
+          );
+        } else if (suggestion == "good") {
+          $("#" + id_code).html(
+            goodIcon
+          );
+        }
 
-        $("#" + id_code).data(
-          "icon", iconInfo
-        );
-        $("#" + id_code).html(
-          iconInfo
-        );
+
     }
 
     // IMPORT DATA
@@ -122,7 +137,8 @@ $(function() {
         // HERE WE MAKE THE CIRCLE
         makeCircle(arrayUsage);
         data.notificationArray.forEach(function(el) {
-            makeNotification(el.id, el.hour, el.message);
+            console.log(el);
+            makeNotification(el.id, el.hour, el.message, el.type);
             eventLists();
             $('.sk-chasing-dots').remove();
             $('.infobox').animate({
