@@ -54,7 +54,8 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         var hourlyCost = relevant[i];
         relevantHoursCostArray.push({
           "hour" : hourlyCost.hour,
-          "cost"  : hourlyCost.value,
+          "cost"  : hourlyCost.cost,
+          "value" : hourlyCost.value,
             "usage" : hourlyCost.usage,
         });
       }
@@ -73,7 +74,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
 
       //Quick sort relevant cost/hour array
       relevantHoursCostArray.sort(function(a, b) {
-        return parseInt(a.cost) - parseInt(b.cost);
+        return parseInt(a.value) - parseInt(b.value);
       });
 
       //Quick sort relevant usage/hour array
@@ -146,7 +147,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
   //Making suggestion to move energy consumption to new time
     var cheapest = bottomHourlyCostArray[0];
     var highest = topHourlyUsageArray[topHourlyUsageArray.length-1];
-    var difference = highest.cost - (highest.usage * cheapest.cost);
+    var difference = highest.cost - (highest.usage * cheapest.value);
     var hour = cheapest.hour;
 
     //Making suggestion about moving highest usage to cheapest times
@@ -168,9 +169,9 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
     var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
     for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
-        var difference1 = parseInt(highest1.cost - (highest1.usage * current.cost));
-        var difference2 = parseInt(highest2.cost - (highest2.usage * current.cost));
-        var difference3 = parseInt(highest3.cost - (highest3.usage * current.cost));
+        var difference1 = parseInt(highest1.cost - (highest1.usage * current.value));
+        var difference2 = parseInt(highest2.cost - (highest2.usage * current.value));
+        var difference3 = parseInt(highest3.cost - (highest3.usage * current.value));
         for (var j = 0; j < notificationArray.length; j++) {
             if (current.hour == notificationArray[j].hour) {
                 var suggestionMessage = {"title":"Smart suggestion - Low price hour", "body":"Move your power usage to save money:<br>" + highest1.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference1 + "</span>" + " kr<br>" + highest2.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference2 + "</span>" + " kr<br>" + highest3.hour + ":00" + arrow + current.hour + ":00" + equals + "<span class = 'money' >" + "+" + difference3 + "</span>" + " kr"};
