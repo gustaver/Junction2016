@@ -15,6 +15,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
       return dailyUsageData.getDailyUsageData()
     }).then(usageData => {
       var usageDataArray = usageData.data[usageData.data.length - 1].hourlyusage[0];
+
       for (var i = 0; i < futureDataArray.length; i++) {
         futureDataArray[i].usage = ( usageDataArray[i] / 1000 );
         futureDataArray[i].cost = ( futureDataArray[i].value * futureDataArray[i].usage );
