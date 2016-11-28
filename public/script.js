@@ -139,32 +139,11 @@ $(function() {
     }
 
     // IMPORT DATA
-    /*
-    $.ajax({
-      dataType: "jsonp",
-      url: URL,
-      }).done(function ( data ) {
-        arrayUsage = data.energyUsageData;
-        // HERE WE MAKE THE CIRCLE
-        makeCircle(arrayUsage);
-        data.notificationArray.forEach(function(el) {
-            console.log(el);
-            makeNotification(el.id, el.hour, el.message, el.type);
-            eventLists();
-            $('.sk-chasing-dots').remove();
-            $('.infobox').animate({
-                opacity: 1
-            });
-    });
-    */
-
-
     $.getJSON(URL, function(data) {
         arrayUsage = data.energyUsageData;
         // HERE WE MAKE THE CIRCLE
         makeCircle(arrayUsage);
         data.notificationArray.forEach(function(el) {
-            console.log(el);
             makeNotification(el.id, el.hour, el.message, el.type);
             eventLists();
             $('.sk-chasing-dots').remove();
