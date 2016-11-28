@@ -174,9 +174,9 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
           if (highest.hour == bottom3HourlyCostArray[j].hour) {
             match = true;
           }
-          if (!match) {
-            highestArray.push(highest);
-          }
+        }
+        if (!match) {
+          highestArray.push(highest);
         }
         if (highestArray.length > 2) {
           break;
