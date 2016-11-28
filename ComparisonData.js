@@ -165,31 +165,30 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
     }
     var arrow = " <b><span class = 'money' >&rarr;</span></b> ";
     var equals = " <b><span class = 'money' >&equals;</span></b> ";
-  /**
     var highestArray = [];
     while (highestArray.length < 3) {
-      var added = false;
       var match = false;
-      for (var i = top5HourlyCostArray.length - 1 && !added; i > 0; i--) {
-        var highest = top5HourlyCostArray[i];
+      for (var i = topHourlyCostArray.length -1; i >= 0; i--) {
+        var highest = topHourlyCostArray[i];
         for (var j = 0; j < bottom3HourlyCostArray.length; j++) {
           if (highest.hour == bottom3HourlyCostArray[j].hour) {
             match = true;
           }
+          if (!match) {
+            highestArray.push(highest);
+          }
         }
-        if (!match) {
-          highestArray.push(highest);
-          added = true;
+        if (highestArray.length > 2) {
+          break;
         }
       }
     }
-    var highest1 = highestArray[1];
-    var highest2 = highestArray[2];
-    var highest3 = highestArray[3];
-   */
-    var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
-    var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
-    var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
+    var highest1 = highestArray[0];
+    var highest2 = highestArray[1];
+    var highest3 = highestArray[2];
+    //var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
+    //var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
+    //var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
   for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
         var difference1 = parseInt(highest1.cost - (highest1.usage * current.value));
