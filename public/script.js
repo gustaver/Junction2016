@@ -11,7 +11,7 @@ $(function() {
     // VARIABLES
     var infobox_inner = $(".infobox-inner");
     var infobox = $(".infobox");
-    var URL = "https://calm-peak-94128.herokuapp.com/api/today";
+    var URL = "http://calm-peak-94128.herokuapp.com/api/today";
 
     function makeCircle(arrayUsage) {
       var usageArray = arrayUsage;
@@ -139,6 +139,26 @@ $(function() {
     }
 
     // IMPORT DATA
+    /*
+    $.ajax({
+      dataType: "jsonp",
+      url: URL,
+      }).done(function ( data ) {
+        arrayUsage = data.energyUsageData;
+        // HERE WE MAKE THE CIRCLE
+        makeCircle(arrayUsage);
+        data.notificationArray.forEach(function(el) {
+            console.log(el);
+            makeNotification(el.id, el.hour, el.message, el.type);
+            eventLists();
+            $('.sk-chasing-dots').remove();
+            $('.infobox').animate({
+                opacity: 1
+            });
+    });
+    */
+
+
     $.getJSON(URL, function(data) {
         arrayUsage = data.energyUsageData;
         // HERE WE MAKE THE CIRCLE
