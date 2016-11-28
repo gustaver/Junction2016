@@ -165,6 +165,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
     }
     var arrow = " <b><span class = 'money' >&rarr;</span></b> ";
     var equals = " <b><span class = 'money' >&equals;</span></b> ";
+  /**
     var highestArray = [];
     while (highestArray.length < 3) {
       var added = false;
@@ -185,7 +186,11 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
     var highest1 = highestArray[1];
     var highest2 = highestArray[2];
     var highest3 = highestArray[3];
-    for (i = 0; i < bottom3HourlyCostArray.length; i++) {
+   */
+    var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
+    var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
+    var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
+  for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
         var difference1 = parseInt(highest1.cost - (highest1.usage * current.value));
         var difference2 = parseInt(highest2.cost - (highest2.usage * current.value));
