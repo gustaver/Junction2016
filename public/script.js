@@ -11,7 +11,7 @@ $(function() {
     // VARIABLES
     var infobox_inner = $(".infobox-inner");
     var infobox = $(".infobox");
-    var URL = "http://calm-peak-94128.herokuapp.com/api/today";
+    var URL = "https://calm-peak-94128.herokuapp.com/api/today";
 
     function makeCircle(arrayUsage) {
       var usageArray = arrayUsage;
