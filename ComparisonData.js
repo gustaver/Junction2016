@@ -145,7 +145,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
-  //Making suggestion to move energy consumption to new time
+    //Making suggestion to move energy consumption to new time
     var cheapest = bottomHourlyCostArray[0];
     var highest = topHourlyUsageArray[topHourlyUsageArray.length-1];
     var difference = highest.cost - (highest.usage * cheapest.value);
@@ -189,7 +189,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
     //var highest1 = topHourlyUsageArray[topHourlyUsageArray.length-1];
     //var highest2 = topHourlyUsageArray[topHourlyUsageArray.length-2];
     //var highest3 = topHourlyUsageArray[topHourlyUsageArray.length-3];
-  for (i = 0; i < bottom3HourlyCostArray.length; i++) {
+    for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
         var difference1 = parseInt(highest1.cost - (highest1.usage * current.value));
         var difference2 = parseInt(highest2.cost - (highest2.usage * current.value));
@@ -212,9 +212,18 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
+      // Sum up the daily cost.
+      var predictedDailyCost = 0;
+      for (var futureDataObj of futureDataArray) {
+        predictedDailyCost += futureDataObj.cost;
+      }
+
+      // suggestedDailyCost needs to be worked. use notification array perhaps.
       var notificationObj = {
         notificationArray: notificationArray,
-        energyUsageData: usageDataArray
+        energyUsageData: usageDataArray,
+        predictedDailyCost: predictedDailyCost,
+        suggestedDailyCost: 0
       }
 
       resolve(notificationObj);
