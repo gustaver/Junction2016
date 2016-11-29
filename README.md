@@ -2,7 +2,7 @@
 
 Komdo
 ===================
-
+www.komdo.tech
 #Our background
 We're 5 first year Computer Science students from Stockholm who love drinking coffee, knocking out code, and hanging out with fun people. This is our first hackathon and we've had a great time.
 
