@@ -55,7 +55,7 @@ $(function() {
             ctx.fillText("Predicted daily cost:", 200, 150);
             ctx.fillText(parseInt(predictedDailyCost) + " kr", 200, 190);
             ctx.fillText("Suggested daily cost:", 200, 250);
-            ctx.fillText(parseInt(suggestedDailyCost) + " kr", 200, 290);
+            ctx.fillText(parseInt(predictedDailyCost) - (parseInt(suggestedDailyCost)) + " kr", 200, 290);
         }
         var rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
             var hex = x.toString(16);
@@ -140,8 +140,6 @@ $(function() {
             "background-color": "#39CCCC"
           });
         }
-
-
     }
 
     // IMPORT DATA
