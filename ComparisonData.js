@@ -1,5 +1,5 @@
 var futureData = require(__dirname + '/Future/GettingFutureData');
-var dailyUsageData = require(__dirname + "/xml-converter/raw-data-converter")
+var dailyUsageData = require(__dirname + "/xml-converter/raw-data-converter");
 
 module.exports.getNotifications = function(lowerEnd, upperEnd) {
   return new Promise((resolve, reject) => {
@@ -15,16 +15,18 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
       return dailyUsageData.getDailyUsageData()
     }).then(usageData => {
       var usageDataArray = usageData.data[usageData.data.length - 1].hourlyusage[0];
-
+      console.log(usageDataArray)
+      console.log(futureDataArray);
       for (var i = 0; i < futureDataArray.length; i++) {
+        // delar med 1000 för att gå ifrån wh till kwh
         futureDataArray[i].usage = ( usageDataArray[i] / 1000 );
         futureDataArray[i].cost = ( futureDataArray[i].value * futureDataArray[i].usage );
         futureDataArray[i].hour = futureDataArray[i].date.format("HH:mm:ss");
       }
-
+      console.log(futureDataArray);
       mainData.data = futureDataArray;
 
-
+      // Detta är samma som future data
       var dataArray = mainData.data;
 
       //Setting up notifications and appropriate messages.
@@ -37,6 +39,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         dataArray[i].hour = hour1;
       }
 
+      // välj den relevanta datan. Alltså den som är inom tidspannet.
       var relevant = [];
       for(var i = lowerEnd; i <= upperEnd; i++){
         relevant.push(dataArray[i]);
@@ -44,11 +47,13 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
 
       mainData.relevantData = relevant;
 
+      // skapar notificationer för alla objekt av relevant data.
     for (var i = 0; i < relevant.length; i++) {
         var notification = {"id":i, "hour": parseInt(relevant[i].hour),"type":"","message":{"title":"","body":""}, "textmessage": ""};
         notificationArray.push(notification);
       }
 
+      // en samlad array med både framtida kostnad dåtida använding
       // Relevant cost/hour array
       var relevantHoursCostArray = [];
       for(var i = 0; i < relevant.length; i++){
@@ -57,7 +62,7 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
           "hour" : hourlyCost.hour,
           "cost"  : hourlyCost.cost,
           "value" : hourlyCost.value,
-            "usage" : hourlyCost.usage,
+          "usage" : hourlyCost.usage,
         });
       }
 
@@ -109,9 +114,12 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
 
       //Checking for intersections between top 5 hourly costs and top 5 hourly usages
       for (var i = 0; i < topHourlyUsageArray.length; i++) {
+
         var usageHour = topHourlyUsageArray[i].hour;
+
         for (var j = 0; j < topHourlyCostArray.length; j++) {
           if (usageHour == topHourlyCostArray[j].hour) {
+
             //Using energy at times when costs are the highest
             var hour = topHourlyCostArray[j].hour;
             var type = "bad";
@@ -145,14 +153,10 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
 
-    //Making suggestion to move energy consumption to new time
-    var cheapest = bottomHourlyCostArray[0];
-    var highest = topHourlyUsageArray[topHourlyUsageArray.length-1];
-    var difference = highest.cost - (highest.usage * cheapest.value);
-    var hour = cheapest.hour;
 
     //Making suggestion about moving highest usage to cheapest times
     var bottom3HourlyCostArray = [];
+console.log(notificationArray)
     for (var i = 0; i < bottomHourlyCostArray.length; i++) {
         var tempData = bottomHourlyCostArray[i];
         var isAdded = false;
@@ -163,6 +167,8 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
             }
         }
     }
+
+
     var arrow = " <b><span class = 'money' >&rarr;</span></b> ";
     var equals = " <b><span class = 'money' >&equals;</span></b> ";
     var highestArray = [];
@@ -183,12 +189,15 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
       }
     }
+
     var highest1 = highestArray[0];
     var highest2 = highestArray[1];
     var highest3 = highestArray[2];
+    var suggestedDailyCost = 0;
     for (i = 0; i < bottom3HourlyCostArray.length; i++) {
         var current = bottom3HourlyCostArray[i];
         var difference1 = parseInt(highest1.cost - (highest1.usage * current.value));
+        suggestedDailyCost += difference1;
         var difference2 = parseInt(highest2.cost - (highest2.usage * current.value));
         var difference3 = parseInt(highest3.cost - (highest3.usage * current.value));
         for (var j = 0; j < notificationArray.length; j++) {
@@ -203,11 +212,13 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         }
     }
 
-    for (var i = notificationArray.length - 1 ; i >= 0; i--) {
+    // tar bort allt irrelevant.
+    for (var i = notificationArray.length - 1; i >= 0; i--) {
       if (notificationArray[i].message.title == "") {
           notificationArray.splice(i, 1);
         }
       }
+
 
       // Sum up the daily cost.
       var predictedDailyCost = 0;
@@ -215,12 +226,14 @@ module.exports.getNotifications = function(lowerEnd, upperEnd) {
         predictedDailyCost += futureDataObj.cost;
       }
 
+
+
       // suggestedDailyCost needs to be worked. use notification array perhaps.
       var notificationObj = {
         notificationArray: notificationArray,
         energyUsageData: usageDataArray,
         predictedDailyCost: predictedDailyCost,
-        suggestedDailyCost: 0
+        suggestedDailyCost: suggestedDailyCost
       }
 
       resolve(notificationObj);
