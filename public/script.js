@@ -13,7 +13,7 @@ $(function() {
     var infobox = $(".infobox");
     var URL = "https://calm-peak-94128.herokuapp.com/api/today";
 
-    function makeCircle(arrayUsage) {
+    function makeCircle(arrayUsage, predictedDailyCost, suggestedDailyCost) {
       var usageArray = arrayUsage;
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
@@ -50,6 +50,12 @@ $(function() {
 
                 start += partLength;
             }
+            ctx.textAlign="center";
+            ctx.font="30px Lato";
+            ctx.fillText("Predicted daily cost:", 200, 150);
+            ctx.fillText(parseInt(predictedDailyCost) + " kr", 200, 190);
+            ctx.fillText("Suggested daily cost:", 200, 250);
+            ctx.fillText(parseInt(suggestedDailyCost) + " kr", 200, 290);
         }
         var rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
             var hex = x.toString(16);
@@ -141,8 +147,10 @@ $(function() {
     // IMPORT DATA
     $.getJSON(URL, function(data) {
         arrayUsage = data.energyUsageData;
+        var predictedDailyCost = data.predictedDailyCost;
+        var suggestedDailyCost = data.suggestedDailyCost;
         // HERE WE MAKE THE CIRCLE
-        makeCircle(arrayUsage);
+        makeCircle(arrayUsage, predictedDailyCost, suggestedDailyCost);
         data.notificationArray.forEach(function(el) {
             makeNotification(el.id, el.hour, el.message, el.type);
             eventLists();

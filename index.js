@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-var textMess = require("./TextMessage");
+var textMess = require(__dirname + "/TextMessage");
 var routes = require(__dirname + "/Routes");
 var pageRouter = require(__dirname + "/PageRouter")
 
